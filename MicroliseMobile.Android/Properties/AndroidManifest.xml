@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="5" android:versionName="5.0" package="com.microlise.MicroliseMobile">
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.CAMERA" />
+	<uses-permission android:name="android.permission.FLASHLIGHT" />
+	<application android:label="MicroliseMobile.Android">
+		<activity android:name="microsoft.identity.client.BrowserTabActivity">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="msal152f50c7-f8e8-4537-939a-3c9b599952a3" android:host="auth" />
+			</intent-filter>
+		</activity>
+	</application>
+</manifest>

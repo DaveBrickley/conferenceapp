@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        x:Class="MicroliseMobile.Scanner.FullScreenScanning"
+                        xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+                        Title="Partial screen">
+    
+        <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--Page Level Resources: Compatibile with Xamarin Live Player -->
+            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+            
+            
+        </Grid.RowDefinitions>
+        
+        <StackLayout Grid.Row="0" BackgroundColor="{StaticResource Primary}">
+            
+                <Label VerticalOptions="EndAndExpand" HorizontalTextAlignment="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+
+                                <Span ForegroundColor="White" Text="Align the desired QR code clearly within the camera window below" FontAttributes="Bold" />
+
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+        <zxing:ZXingScannerView Grid.Row="1" x:Name="_scanView" OnScanResult="Handle_OnScanResult" IsScanning="true"
+                                WidthRequest="200" HeightRequest="200" />
+        <BoxView Grid.Row="2" BackgroundColor="White" />
+        <StackLayout Grid.Row='3'>
+        <Button Margin="0,10,0,0" Text="Quit scanning" Clicked="Handle_Clicked" BackgroundColor="{StaticResource Primary}" TextColor="White" />
+            </StackLayout>
+        
+    </Grid>
+</ContentPage>
+    
