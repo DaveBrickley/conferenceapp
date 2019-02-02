@@ -18,8 +18,10 @@ namespace MicroliseMobile.Views
 
             {
 
-                await Navigation.PushModalAsync(new Authenticate.LoginPage());
-                NavigationPage.SetHasBackButton(this, false);
+                //await Navigation.PushModalAsync(new Authenticate.LoginPage());
+                //NavigationPage.SetHasBackButton(this, false);
+
+                Application.Current.MainPage = new Authenticate.LoginPage();
             }
 
             else

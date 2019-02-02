@@ -36,6 +36,9 @@ namespace MicroliseMobile.Scanner
             {
                 HasResult = true;
 
+                //_scanView.IsAnalyzing = false;
+                //_scanView.IsScanning = false;
+
                 if (result.Text.Length > 200)
 
                 {
@@ -92,18 +95,39 @@ namespace MicroliseMobile.Scanner
 
                     Submit.BindingContext = barCode;
 
+
                     // Navigate to our scanner page
-                    await Navigation.PushModalAsync(Submit);
-                    NavigationPage.SetHasBackButton(this, false);
+                    //await Navigation.PushModalAsync(Submit);
+                    //NavigationPage.SetHasBackButton(this, false);
+                    Application.Current.MainPage = Submit;
 
                     HasResult = false;
+                    _scanView.IsAnalyzing = false;
 
                 }
 
                 else
 
                 {
+                   
                     HasResult = false;
+                    if (_scanView.IsScanning == false)
+                    {
+
+                        _scanView.IsScanning = true;
+
+                        System.Diagnostics.Debug.WriteLine("Debug: user has elected to keep scanning, setting IsScanning to True");
+
+                    }
+                    if (_scanView.IsAnalyzing == false)
+
+                    {
+
+                        _scanView.IsAnalyzing = true;
+                        System.Diagnostics.Debug.WriteLine("Debug: user has elected to keep scanning, setting IsAnalyzing to True");
+
+                    }
+
 
                 }
 
@@ -115,27 +139,68 @@ namespace MicroliseMobile.Scanner
         {
             base.OnAppearing();
 
-            _scanView.IsScanning = true;
+
+
+            if (_scanView.IsScanning == false)
+            {
+
+                _scanView.IsScanning = true;
+
+                System.Diagnostics.Debug.WriteLine("Debug: On appearing has been called, setting IsScanning to True");
+
+            }
+            if (_scanView.IsAnalyzing == false)
+
+            {
+
+                _scanView.IsAnalyzing = true;
+                System.Diagnostics.Debug.WriteLine("Debug: On appearing has been called, setting IsAnalyzing to True");
+
+            }
+
+
 
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            
 
+            _scanView.IsAnalyzing = false;
             _scanView.IsScanning = false;
 
+            System.Diagnostics.Debug.WriteLine("Debug: On disappearing has been called " + _scanView.IsScanning);
+            base.BindingContext = null;
+
+                 
         }
 
-        async void Handle_Clicked(object sender, System.EventArgs e)
+        void Handle_Clicked(object sender, System.EventArgs e)
         {
 
 
             var About = new Views.AboutPage();
 
+            if (_scanView.IsScanning == true)
+            {
+
+                _scanView.IsScanning = false;
+
+                System.Diagnostics.Debug.WriteLine("Debug: On click has been called, setting IsScanning to false");
+
+            }
+            if (_scanView.IsAnalyzing == true)
+
+            {
+
+                _scanView.IsAnalyzing = false;
+                System.Diagnostics.Debug.WriteLine("Debug: On click has been called, setting IsAnalyzing to false");
+
+            }
             // Navigate to our scanner page
-            await Navigation.PushModalAsync(About);
+            //await Navigation.PushModalAsync(About);
+
+            Application.Current.MainPage = About;
         }
     }
 }

@@ -29,7 +29,7 @@ namespace MicroliseMobile
             Logger.Level = LogLevel.Info;
             Logger.PiiLoggingEnabled = true;
 
-            MainPage = new MainPage();
+            MainPage = new Views.AboutPage();
 
 
 

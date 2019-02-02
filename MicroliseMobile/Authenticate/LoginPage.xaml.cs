@@ -33,8 +33,10 @@ namespace MicroliseMobile.Authenticate
                 var About = new Views.AboutPage();
 
                 // Navigate to our scanner page
-                await Navigation.PushModalAsync(About);
-                NavigationPage.SetHasBackButton(this, false);
+                //await Navigation.PushModalAsync(About);
+                //NavigationPage.SetHasBackButton(this, false);
+
+                Application.Current.MainPage = About;
 
                 return;
             }
@@ -57,8 +59,10 @@ namespace MicroliseMobile.Authenticate
             Scanner.BindingContext = displayName;
 
             // Navigate to our scanner page
-            await Navigation.PushModalAsync(Scanner);
+            //await Navigation.PushModalAsync(Scanner);
             //NavigationPage.SetHasBackButton(this, false);
+
+            Application.Current.MainPage = Scanner;
 
         }
 
